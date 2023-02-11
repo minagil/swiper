@@ -1,34 +1,33 @@
 var UiMainTab = (function(){
-  var btnTab = null;
-  var tabGroups = null;
-  var _this = this;
+  var _btnTab = '';
+  var _tabGroups = '';
+  var _this = '';
 
   function UiMainTab(){
     _this = this;
-    btnTab = document.querySelector('.tab_wrap .tab_list');
-    tabGroups = document.querySelectorAll('.tab_wrap .tab_content .tab_group');
+    _btnTab = document.querySelector('.tab_wrap .tab_list');
+    _tabGroups = document.querySelectorAll('.tab_wrap .tab_content .tab_group');
 
-    this.eventTab();
+    _this.eventTab();
   }
   
   UiMainTab.prototype.eventTab = function(){
-    btnTab.addEventListener('click', function(event){
+    _btnTab.addEventListener('click', function(event){
       _this.executiveTabs(event);
     });
   };
 
   UiMainTab.prototype.executiveTabs = function(e){
-    var nodes = btnTab.children;
+    var nodes = _btnTab.children;
     for(var i=0;i<nodes.length;i++){
       nodes[i].classList.remove('active');
     }
     var currentBtnTab = e.target.closest('li');
     currentBtnTab.classList.add('active');
     
-    for(var i=0;i<tabGroups.length;i++){
-      tabGroups[i].classList.remove('active');
+    for(var i=0;i<_tabGroups.length;i++){
+      _tabGroups[i].classList.remove('active');
     }
-
     var currentDataMenu = e.target.dataset.menu;
     var targetTabGroup = document.querySelector('.tab_wrap .tab_content .tab_group[data-menu="'+currentDataMenu+'"]');
     targetTabGroup.classList.add('active');
@@ -47,6 +46,7 @@ var mainTabSlider = (function(){
   var viewNumber = '';
   var deviceCheck = '';
   var _this = this;
+  // var funcs = [];
 
   function mainTabSlider(){
     _this = this;
@@ -89,7 +89,8 @@ var mainTabSlider = (function(){
   mainTabSlider.prototype.executiveSlide = function(){
     var mainFatureSwipers = document.querySelectorAll('.main_feature_swiper');
 
-    for(let index=0;index<mainFatureSwipers.length;index++){
+    for(var i=0;i<mainFatureSwipers.length;i++){
+      (function(index){
       // 슬라이드 초기화
       if(swiperArray[index] !== undefined) {
         swiperArray[index].destroy();
@@ -106,11 +107,7 @@ var mainTabSlider = (function(){
       }
 
       // loop옵션 체크
-      if (slideNumber[index] > viewNumber){
-        loopCheck = true;
-      }else{ 
-        loopCheck = false;
-      }
+      slideNumber[index] > viewNumber ? loopCheck = true : loopCheck = false;
 
       swiperArray[index] = new Swiper(mainFatureSwipers[index].querySelector('.main_feature_inner'), {
         slidesPerView: viewNumber,
@@ -125,7 +122,6 @@ var mainTabSlider = (function(){
         },
         on: {
           activeIndexChange: function(){
-            console.log(mainFatureSwipers[index])
             if(mainFatureSwipers[index].parentNode.style.display !== 'none'){
               slideIndex[index] = this.realIndex; // 현재 슬라이드 index 갱신
             }
@@ -137,7 +133,8 @@ var mainTabSlider = (function(){
       if(swiperArray[index] === undefined){
         swiperArray[index] = swiper;
       }
-
+      }(i));
+      
     }
   }
 

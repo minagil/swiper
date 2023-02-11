@@ -166,6 +166,7 @@ img {
 .tab_wrap .tab_list > li button {display: inline-block;padding: 10px 15px;border: 1px solid #fff;border-radius:4px 4px 0 0;font-size: 14px;color: #000;text-decoration: none;cursor: pointer;}
 .tab_wrap .tab_list > li.active button {position: relative;border-color: #ddd;border-bottom: 1px solid #fff;background: #fff;color: #337ab7;z-index: 2;}
 .tab_wrap .tab_content {border: 1px solid #ddd;border-top: none;}
+.tab_wrap .tab_content .tab_group {padding: 15px;}
 .tab_wrap .tab_content .tab_group:not(.active) {display: none;}
 
 /* 슬라이드 */

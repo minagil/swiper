@@ -1,24 +1,24 @@
 var UiMainTab = (function(){
-  var _btnTab = '';
-  var _tabGroups = '';
+  var btnTab = '';
+  var tabGroups = '';
   var _this = '';
 
   function UiMainTab(){
     _this = this;
-    _btnTab = document.querySelector('.tab_wrap .tab_list');
-    _tabGroups = document.querySelectorAll('.tab_wrap .tab_content .tab_group');
+    btnTab = document.querySelector('.tab_wrap .tab_list');
+    tabGroups = document.querySelectorAll('.tab_wrap .tab_content .tab_group');
 
     _this.eventTab();
   }
   
   UiMainTab.prototype.eventTab = function(){
-    _btnTab.addEventListener('click', function(event){
+    btnTab.addEventListener('click', function(event){
       _this.executiveTabs(event);
     });
   };
 
   UiMainTab.prototype.executiveTabs = function(e){
-    var nodes = _btnTab.children;
+    var nodes = btnTab.children;
     for(var i=0;i<nodes.length;i++){
       nodes[i].classList.remove('active');
     }
